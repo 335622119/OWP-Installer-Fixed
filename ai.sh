@@ -348,13 +348,6 @@ uninstall_product() {
   puts "Panel was uninstalled."
 }
 
-reset_daemon() {
-	mv /opt/ovz-web-panel/utils/hw-daemon/hw-daemon.rb /opt/ovz-web-panel/utils/hw-daemon/hw-daemon.rb.bak
-	wget -P /opt/ovz-web-panel/utils/hw-daemon http://download.xosadmin.com/download/others/owp/hw-daemon.rb
-	ruby /opt/ovz-web-panel/utils/hw-daemon/hw-daemon.rb start
-	echo "Install Daemon Finish."
-}
-
 main() {
   puts_separator
   puts "OpenVZ Web Panel Installer."
@@ -367,7 +360,6 @@ main() {
   else
     check_dependencies
     install_product
-     reset_daemon
     start_services
     print_access_info
     puts_separator
