@@ -3,5 +3,5 @@ OpenVZ Web Panel Installer (Fixed).
 This repo image is from http://git.xosadmin.com  
 Official blog: http://www.xosadmin.com
 
-This installer is based on official installer, and fixes the installation of some packages and adds the OpenVZ installation module.
-Tested and works on CentOS 6 64bit.
+This installer is based on official installer, and fixes the installation of some packages and adds the OpenVZ installation module.  
+The bash has been tested and can run on CentOS 6 64bit.
