@@ -3,7 +3,7 @@
 # global variables
 VERSION="2.4"
 DOWNLOAD_URL="http://download.xosadmin.com/download/others/owp/ovz-web-panel-$VERSION.tgz"
-RUBYGEMS_URL="http://download.xosadmin.com/download/others/owp/rubygems-1.3.5.tgz"
+RUBYGEMS_URL="http://download.xosadmin.com/download/others/owp/rubygems-1.8.25.tgz"
 RUBY_SQLITE3_CMD="ruby -e \"require 'rubygems'\" -e \"require 'sqlite3'\""
 LOG_FILE="/tmp/ovz-web-panel.log"
 INSTALL_DIR="/opt/ovz-web-panel/"
@@ -130,7 +130,11 @@ resolve_deps() {
   fi
 
   if [ "$DISTRIB_ID" = "Fedora" ]; then
-    yum -y install ruby rubygems ruby-sqlite3 rubygem-rake
+    yum -y install ruby rubygems ruby-sqlite3 rubygem-rake ruby-devel
+      echo "Setting Up ruby..."
+      gem sources -a http://rubygems.org/
+      gem sources -r http://gems.rubyforge.org/
+
   fi
 }
 
