@@ -117,10 +117,10 @@ resolve_deps() {
     fi
 
     gem list rake -i
-    [ $? -ne 0 ] && gem install rake -v 10.0.0
+    [ $? -ne 0 ] && gem install rake -v 0.9.2.2
 
     gem list rdoc -i
-    [ $? -ne 0 ] && gem install rdoc -v 3.9.5
+    [ $? -ne 0 ] && gem install rdoc -v 2.5.8
 
     sh -c "$RUBY_SQLITE3_CMD" > /dev/null 2>&1
     if [ $? -ne 0 ]; then
@@ -288,16 +288,10 @@ start_services() {
   [ "x$UPGRADE" = "x1" ] && stop_services
 
   puts "Starting services..."
-
+   cp /opt/ovz-web-panel/utils/hw-daemon/hw-daemon.ini.sample /opt/ovz-web-panel/utils/hw-daemon/hw-daemon.ini
   if [ "x$UPGRADE" = "x0" ]; then
     if [ "$ENVIRONMENT" = "HW-NODE" ]; then
       HW_DAEMON_CONFIG="$INSTALL_DIR/utils/hw-daemon/hw-daemon.ini"
-      if [ ! -f $HW_DAEMON_CONFIG ]; then
-        echo "address = 127.0.0.1" >> $HW_DAEMON_CONFIG
-        echo "port = 7767" >> $HW_DAEMON_CONFIG
-        RAND_KEY=`head -c 200 /dev/urandom | md5sum | awk '{ print \$1 }'`
-        echo "key = $RAND_KEY" >> $HW_DAEMON_CONFIG
-      fi
       $INSTALL_DIR/script/owp start
       puts "Adding localhost to the list of controlled servers..."
       ruby $INSTALL_DIR/script/runner -e production "HardwareServer.new(:host => 'localhost', :auth_key => '$RAND_KEY').connect"
