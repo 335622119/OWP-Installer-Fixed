@@ -1,5 +1,5 @@
 # OWP-Fixed-Up
-OpenVZ Web Panel Installer (Fixed).\n
+OpenVZ Web Panel Installer (Fixed).  
 This repo image is from http://git.xosadmin.com
 Official blog: http://www.xosadmin.com
 
