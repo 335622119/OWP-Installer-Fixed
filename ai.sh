@@ -121,7 +121,7 @@ resolve_deps() {
 
     gem list rdoc -i
     [ $? -ne 0 ] && gem install rdoc -v 2.5.8
-
+    gem install net-ssh -v 2.8.0 && gem install net-sftp -v 2.0.5
     sh -c "$RUBY_SQLITE3_CMD" > /dev/null 2>&1
     if [ $? -ne 0 ]; then
       yum -y install sqlite-devel make gcc
